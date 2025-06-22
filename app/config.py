@@ -4,7 +4,7 @@ from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    # Database
+    # Database - Heroku автоматически предоставляет DATABASE_URL
     database_url: str = "sqlite:///./quantum_insight.db"
     
     # Security
@@ -16,7 +16,7 @@ class Settings(BaseSettings):
     telegram_bot_token: str = ""
     
     # App Settings
-    debug: bool = True
+    debug: bool = False  # False для продакшена
     allowed_hosts: str = "localhost,127.0.0.1"
     cors_origins: str = "http://localhost:3000,https://web.telegram.org"
     

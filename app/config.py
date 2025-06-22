@@ -27,6 +27,14 @@ class Settings(BaseSettings):
     smtp_password: str = ""
     
     @property
+    def database_url_fixed(self) -> str:
+        """Исправляет URL базы данных для PostgreSQL на Heroku"""
+        url = self.database_url
+        if url.startswith("postgres://"):
+            url = url.replace("postgres://", "postgresql://", 1)
+        return url
+    
+    @property
     def allowed_hosts_list(self) -> List[str]:
         return [host.strip() for host in self.allowed_hosts.split(",")]
     

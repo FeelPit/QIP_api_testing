@@ -18,7 +18,7 @@ class Settings(BaseSettings):
     # App Settings
     debug: bool = False  # False для продакшена
     allowed_hosts: str = "localhost,127.0.0.1"
-    cors_origins: str = "http://localhost:3000,https://web.telegram.org"
+    cors_origins: str = "http://localhost:3000,http://localhost:5173,https://web.telegram.org"
     
     # Email
     smtp_host: str = "smtp.gmail.com"

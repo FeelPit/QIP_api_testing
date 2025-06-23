@@ -16,7 +16,12 @@ router = APIRouter(prefix="/api/aeon", tags=["aeon_interview"])
 def start_interview(request: AeonInterviewStartRequest, db: Session = Depends(get_db)):
     """Начать интервью ÆON, получить первый вопрос (на французском)"""
     try:
-        result = AeonInterviewService.start_interview(db, request.user_id)
+        result = AeonInterviewService.start_interview(
+            db, 
+            request.user_id, 
+            request.user_name, 
+            request.user_email
+        )
         return APIResponse(
             success=True, 
             message="Interview started successfully", 

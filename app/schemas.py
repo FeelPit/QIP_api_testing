@@ -282,6 +282,8 @@ class AeonReport(AeonReportBase):
 # ÆON Interview Request/Response schemas
 class AeonInterviewStartRequest(BaseModel):
     user_id: Optional[int] = None
+    user_name: Optional[str] = None
+    user_email: Optional[str] = None
 
 
 class AeonInterviewStartResponse(BaseModel):

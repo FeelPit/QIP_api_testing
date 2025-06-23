@@ -24,7 +24,11 @@ def test_aeon_interview():
     print("\n1️⃣ Начинаем интервью...")
     start_response = requests.post(
         f"{AEON_BASE_URL}/start_interview",
-        json={"user_id": None}
+        json={
+            "user_id": None,
+            "user_name": "Test User",
+            "user_email": "test@example.com"
+        }
     )
     
     if start_response.status_code != 200:

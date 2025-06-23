@@ -405,7 +405,9 @@ class AeonInterviewService:
     }
     
     @staticmethod
-    def start_interview(db: Session, user_id: Optional[int] = None) -> Dict[str, Any]:
+    def start_interview(db: Session, user_id: Optional[int] = None, 
+                       candidate_name: Optional[str] = None, 
+                       candidate_email: Optional[str] = None) -> Dict[str, Any]:
         """Начать новое интервью ÆON"""
         import uuid
         
@@ -414,6 +416,8 @@ class AeonInterviewService:
         session = AeonSession(
             session_id=session_id,
             user_id=user_id,
+            candidate_name=candidate_name,
+            candidate_email=candidate_email,
             current_question=1,  # Начинаем с первого вопроса
             total_questions=5,
             status="active"
@@ -534,6 +538,8 @@ class AeonInterviewService:
         full_report = {
             "session_info": {
                 "session_id": session_id,
+                "candidate_name": session.candidate_name,
+                "candidate_email": session.candidate_email,
                 "started_at": session.started_at.isoformat(),
                 "completed_at": session.completed_at.isoformat() if session.completed_at else None,
                 "total_questions": session.total_questions

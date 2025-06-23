@@ -111,6 +111,8 @@ class AeonSession(Base):
     id = Column(Integer, primary_key=True, index=True)
     session_id = Column(String(255), unique=True, index=True, nullable=False)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=True)
+    candidate_name = Column(String(255), nullable=True)  # Имя кандидата
+    candidate_email = Column(String(255), nullable=True)  # Email кандидата
     started_at = Column(DateTime(timezone=True), server_default=func.now())
     completed_at = Column(DateTime(timezone=True), nullable=True)
     current_question = Column(Integer, default=0)

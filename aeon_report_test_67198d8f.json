@@ -1,0 +1,189 @@
+{
+  "session_info": {
+    "session_id": "67198d8f-e5b9-42c3-8c4c-1ede111ca093",
+    "started_at": "2025-06-23T10:07:37",
+    "completed_at": "2025-06-23T10:07:37.654670",
+    "total_questions": 5
+  },
+  "candidate_assessment": {
+    "archetype": "Аналитик-Планировщик",
+    "consciousness_vector": "Индивидуальный",
+    "motivation_score": 0.25,
+    "growth_zone": "Общее развитие soft skills",
+    "genius_zone": "Адаптивность и быстрая обучаемость",
+    "synergy_score": 0.5,
+    "flexibility_score": 0.6,
+    "independence_score": 0.5,
+    "adaptability_score": 0.5
+  },
+  "overall_assessment": "Кандидат требует дополнительной оценки. Архетип 'Аналитик-Планировщик' может быть подходящим, но необходима работа над мотивацией и командной интеграцией.",
+  "recommendations": {
+    "immediate_actions": [
+      "Развитие уверенности в принятии решений"
+    ],
+    "development_plan": [
+      "Фокус на зоне роста: Общее развитие soft skills",
+      "Развитие зоны гениальности: Адаптивность и быстрая обучаемость"
+    ],
+    "team_integration": [
+      "Постепенная интеграция с менторской поддержкой"
+    ]
+  },
+  "detailed_analysis": {
+    "archetype": "Аналитик-Планировщик",
+    "consciousness_vector": "Индивидуальный",
+    "motivation_score": 0.25,
+    "growth_zone": "Общее развитие soft skills",
+    "genius_zone": "Адаптивность и быстрая обучаемость",
+    "synergy_score": 0.5,
+    "flexibility_score": 0.6,
+    "independence_score": 0.5,
+    "adaptability_score": 0.5,
+    "overall_assessment": "Кандидат требует дополнительной оценки. Архетип 'Аналитик-Планировщик' может быть подходящим, но необходима работа над мотивацией и командной интеграцией.",
+    "recommendations": {
+      "immediate_actions": [
+        "Развитие уверенности в принятии решений"
+      ],
+      "development_plan": [
+        "Фокус на зоне роста: Общее развитие soft skills",
+        "Развитие зоны гениальности: Адаптивность и быстрая обучаемость"
+      ],
+      "team_integration": [
+        "Постепенная интеграция с менторской поддержкой"
+      ]
+    },
+    "detailed_analyses": [
+      {
+        "question_type": "personality",
+        "analysis": {
+          "length": 328,
+          "sentiment_score": 0.0392156862745098,
+          "confidence_score": 0.5,
+          "keywords": [
+            "suis",
+            "passionné",
+            "l'innovation",
+            "création",
+            "solutions",
+            "impact",
+            "positif.",
+            "dans",
+            "travail,",
+            "j'aime"
+          ],
+          "question_type": "personality",
+          "motivation_indicators": {
+            "motivation_keywords": [
+              "passion",
+              "but"
+            ],
+            "motivation_level": 0.25
+          }
+        }
+      },
+      {
+        "question_type": "thinking",
+        "analysis": {
+          "length": 319,
+          "sentiment_score": 0.0,
+          "confidence_score": 0.5,
+          "keywords": [
+            "dans",
+            "situation",
+            "complexe",
+            "sans",
+            "instructions",
+            "claires,",
+            "j'ai",
+            "d'abord",
+            "analysé",
+            "contexte"
+          ],
+          "question_type": "thinking",
+          "thinking_pattern": {
+            "thinking_style": "strategic",
+            "strategic_ratio": 1.0
+          }
+        }
+      },
+      {
+        "question_type": "potential",
+        "analysis": {
+          "length": 284,
+          "sentiment_score": 0.025,
+          "confidence_score": 0.5,
+          "keywords": [
+            "veux",
+            "laisser",
+            "culture",
+            "d'innovation",
+            "collaboration",
+            "dans",
+            "l'équipe.",
+            "j'avais",
+            "liberté",
+            "totale,"
+          ],
+          "question_type": "potential",
+          "potential_indicators": {
+            "potential_indicators": [
+              "créer"
+            ],
+            "potential_score": 0.14285714285714285
+          }
+        }
+      },
+      {
+        "question_type": "behavior",
+        "analysis": {
+          "length": 361,
+          "sentiment_score": 0.0,
+          "confidence_score": 0.5,
+          "keywords": [
+            "dernière",
+            "erreur",
+            "importante",
+            "était",
+            "communiquer",
+            "suffisamment",
+            "avec",
+            "l'équipe",
+            "changement",
+            "direction."
+          ],
+          "question_type": "behavior",
+          "behavior_pattern": {
+            "learning_orientation": true,
+            "resilience_level": 0.0
+          }
+        }
+      },
+      {
+        "question_type": "integration",
+        "analysis": {
+          "length": 314,
+          "sentiment_score": 0.0,
+          "confidence_score": 0.5,
+          "keywords": [
+            "m'imagine",
+            "comme",
+            "catalyseur",
+            "d'innovation",
+            "chez",
+            "quantum",
+            "insight,",
+            "contribuant",
+            "développer",
+            "solutions"
+          ],
+          "question_type": "integration",
+          "integration_readiness": {
+            "team_orientation": false,
+            "improvement_orientation": true,
+            "integration_readiness": 0.2
+          }
+        }
+      }
+    ]
+  }
+}

@@ -171,4 +171,142 @@ class APIResponse(BaseModel):
 
 class ErrorResponse(BaseModel):
     detail: str
-    error_code: Optional[str] = None 
+    error_code: Optional[str] = None
+
+
+class AeonInterviewStart(BaseModel):
+    session_id: str
+    question: str
+
+
+class AeonInterviewAnswer(BaseModel):
+    session_id: str
+    answer: str
+
+
+class AeonInterviewReport(BaseModel):
+    session_id: str
+    report: dict
+
+
+# ÆON Interview Schemas
+class AeonSessionBase(BaseModel):
+    session_id: str
+    user_id: Optional[int] = None
+    current_question: int = 0
+    total_questions: int = 5
+    status: str = "active"
+
+
+class AeonSessionCreate(AeonSessionBase):
+    pass
+
+
+class AeonSession(AeonSessionBase):
+    id: int
+    started_at: datetime
+    completed_at: Optional[datetime] = None
+    created_at: datetime
+    
+    class Config:
+        from_attributes = True
+
+
+class AeonQuestionBase(BaseModel):
+    question_number: int
+    question_text: str
+    question_type: str
+
+
+class AeonQuestionCreate(AeonQuestionBase):
+    session_id: int
+
+
+class AeonQuestion(AeonQuestionBase):
+    id: int
+    session_id: int
+    generated_at: datetime
+    
+    class Config:
+        from_attributes = True
+
+
+class AeonAnswerBase(BaseModel):
+    answer_text: str
+    analysis: Optional[Dict[str, Any]] = None
+    sentiment_score: Optional[float] = None
+    confidence_score: Optional[float] = None
+
+
+class AeonAnswerCreate(AeonAnswerBase):
+    question_id: int
+
+
+class AeonAnswer(AeonAnswerBase):
+    id: int
+    question_id: int
+    created_at: datetime
+    
+    class Config:
+        from_attributes = True
+
+
+class AeonReportBase(BaseModel):
+    archetype: Optional[str] = None
+    consciousness_vector: Optional[str] = None
+    motivation_score: Optional[float] = None
+    growth_zone: Optional[str] = None
+    genius_zone: Optional[str] = None
+    synergy_score: Optional[float] = None
+    flexibility_score: Optional[float] = None
+    independence_score: Optional[float] = None
+    adaptability_score: Optional[float] = None
+    overall_assessment: Optional[str] = None
+    recommendations: Optional[Dict[str, Any]] = None
+    report_json: Optional[Dict[str, Any]] = None
+
+
+class AeonReportCreate(AeonReportBase):
+    session_id: int
+
+
+class AeonReport(AeonReportBase):
+    id: int
+    session_id: int
+    generated_at: datetime
+    
+    class Config:
+        from_attributes = True
+
+
+# ÆON Interview Request/Response schemas
+class AeonInterviewStartRequest(BaseModel):
+    user_id: Optional[int] = None
+
+
+class AeonInterviewStartResponse(BaseModel):
+    session_id: str
+    question: str
+    question_number: int
+    total_questions: int
+    message: str
+
+
+class AeonInterviewAnswerRequest(BaseModel):
+    session_id: str
+    answer: str
+
+
+class AeonInterviewAnswerResponse(BaseModel):
+    session_id: str
+    next_question: Optional[str] = None
+    question_number: Optional[int] = None
+    total_questions: int
+    is_completed: bool
+    report: Optional[Dict[str, Any]] = None
+    message: str
+
+
+class AeonInterviewDownloadRequest(BaseModel):
+    session_id: str
+    format: str = "json"  # json, pdf, etc. 

@@ -17,6 +17,7 @@ class User(Base):
     
     # Relationships
     results = relationship("TestResult", back_populates="user")
+    aeon_sessions = relationship("AeonSession", back_populates="user")
 
 
 class Test(Base):
@@ -100,4 +101,77 @@ class SuspiciousActivity(Base):
     description = Column(Text, nullable=False)
     confidence_score = Column(Float, default=0.0)
     details = Column(JSON, nullable=True)
-    created_at = Column(DateTime(timezone=True), server_default=func.now()) 
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+
+
+# ÆON Interview Models
+class AeonSession(Base):
+    __tablename__ = "aeon_sessions"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    session_id = Column(String(255), unique=True, index=True, nullable=False)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=True)
+    started_at = Column(DateTime(timezone=True), server_default=func.now())
+    completed_at = Column(DateTime(timezone=True), nullable=True)
+    current_question = Column(Integer, default=0)
+    total_questions = Column(Integer, default=5)
+    status = Column(String(50), default="active")  # 'active', 'completed', 'abandoned'
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    
+    # Relationships
+    user = relationship("User", back_populates="aeon_sessions")
+    questions = relationship("AeonQuestion", back_populates="session")
+    report = relationship("AeonReport", back_populates="session", uselist=False)
+
+
+class AeonQuestion(Base):
+    __tablename__ = "aeon_questions"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    session_id = Column(Integer, ForeignKey("aeon_sessions.id"), nullable=False)
+    question_number = Column(Integer, nullable=False)
+    question_text = Column(Text, nullable=False)
+    question_type = Column(String(50), nullable=False)  # 'personality', 'thinking', 'potential', 'behavior', 'integration'
+    generated_at = Column(DateTime(timezone=True), server_default=func.now())
+    
+    # Relationships
+    session = relationship("AeonSession", back_populates="questions")
+    answer = relationship("AeonAnswer", back_populates="question", uselist=False)
+
+
+class AeonAnswer(Base):
+    __tablename__ = "aeon_answers"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    question_id = Column(Integer, ForeignKey("aeon_questions.id"), nullable=False)
+    answer_text = Column(Text, nullable=False)
+    analysis = Column(JSON, nullable=True)  # AI анализ ответа
+    sentiment_score = Column(Float, nullable=True)
+    confidence_score = Column(Float, nullable=True)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    
+    # Relationships
+    question = relationship("AeonQuestion", back_populates="answer")
+
+
+class AeonReport(Base):
+    __tablename__ = "aeon_reports"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    session_id = Column(Integer, ForeignKey("aeon_sessions.id"), nullable=False)
+    archetype = Column(String(100), nullable=True)
+    consciousness_vector = Column(String(100), nullable=True)
+    motivation_score = Column(Float, nullable=True)
+    growth_zone = Column(Text, nullable=True)
+    genius_zone = Column(Text, nullable=True)
+    synergy_score = Column(Float, nullable=True)
+    flexibility_score = Column(Float, nullable=True)
+    independence_score = Column(Float, nullable=True)
+    adaptability_score = Column(Float, nullable=True)
+    overall_assessment = Column(Text, nullable=True)
+    recommendations = Column(JSON, nullable=True)
+    report_json = Column(JSON, nullable=True)  # Полный отчет в JSON
+    generated_at = Column(DateTime(timezone=True), server_default=func.now())
+    
+    # Relationships
+    session = relationship("AeonSession", back_populates="report") 

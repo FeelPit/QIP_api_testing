@@ -6,7 +6,7 @@ from contextlib import asynccontextmanager
 from app.config import settings
 from app.database import engine
 from app.models import Base
-from app.routers import tests, submissions, results
+from app.routers import tests, submissions, results, aeon_interview
 
 
 @asynccontextmanager
@@ -36,6 +36,7 @@ app.add_middleware(
 app.include_router(tests.router)
 app.include_router(submissions.router)
 app.include_router(results.router)
+app.include_router(aeon_interview.router)
 
 
 @app.get("/")

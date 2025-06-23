@@ -18,9 +18,22 @@ def update_aeon_sessions_table():
     
     db = SessionLocal()
     try:
-        # Для SQLite используем pragma table_info
-        result = db.execute(text("PRAGMA table_info(aeon_sessions)"))
-        existing_columns = [row[1] for row in result.fetchall()]
+        # Определяем тип СУБД
+        engine = db.get_bind()
+        dialect = engine.dialect.name
+        if dialect == 'sqlite':
+            result = db.execute(text("PRAGMA table_info(aeon_sessions)"))
+            existing_columns = [row[1] for row in result.fetchall()]
+        elif dialect == 'postgresql':
+            result = db.execute(text("""
+                SELECT column_name 
+                FROM information_schema.columns 
+                WHERE table_name = 'aeon_sessions' 
+                AND column_name IN ('candidate_name', 'candidate_email')
+            """))
+            existing_columns = [row[0] for row in result.fetchall()]
+        else:
+            raise Exception(f"Неизвестный тип СУБД: {dialect}")
         
         if 'candidate_name' not in existing_columns:
             print("➕ Добавление поля candidate_name...")
